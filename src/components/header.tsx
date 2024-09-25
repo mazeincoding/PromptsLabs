@@ -7,7 +7,11 @@ import { Button } from "./ui/button";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export function Header() {
+export function Header({
+  show_create_button = true,
+}: {
+  show_create_button?: boolean;
+}) {
   const router = useRouter();
 
   return (
@@ -20,13 +24,15 @@ export function Header() {
       </Link>
       <div className="flex items-center gap-4">
         <ThemeToggle />
-        <Button
-          className="gap-2"
-          onClick={() => router.push("/prompts/create")}
-        >
-          Create prompt
-          <Plus className="w-4 h-4" />
-        </Button>
+        {show_create_button && (
+          <Button
+            className="gap-2"
+            onClick={() => router.push("/prompts/create")}
+          >
+            Create prompt
+            <Plus className="w-4 h-4" />
+          </Button>
+        )}
       </div>
     </header>
   );
