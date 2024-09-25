@@ -23,7 +23,8 @@ export function Hero() {
             A library of prompts to see how new LLMs perform
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl">
-            Explore prompts by the community and share your own.
+            Tired of finding test prompts to test new LLMs? Get copy-paste
+            prompts by the community, and create your own!
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
