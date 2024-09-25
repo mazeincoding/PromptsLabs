@@ -1,40 +1,61 @@
 "use client";
-import { prompts } from "@/data/prompts";
-import { Input } from "@/components/ui/input";
+
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { PromptCard } from "@/components/prompt-card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { get_prompts } from "@/lib/prompt-utils";
+import { TPrompt } from "@/types/prompt";
+import { AlertCircle } from "lucide-react";
 import { Header } from "@/components/header";
 
 export default function Prompts() {
-  const [search_query, set_search_query] = useState("");
+  const router = useRouter();
+  const [prompts, set_prompts] = useState<TPrompt[]>([]);
+  const [loading, set_loading] = useState(true);
 
-  const filtered_prompts = prompts.filter((prompt) =>
-    prompt.input.toLowerCase().includes(search_query.toLowerCase())
-  );
+  useEffect(() => {
+    async function fetch_prompts() {
+      try {
+        const data = await get_prompts();
+        set_prompts(data);
+      } catch (error) {
+        console.error("Failed to fetch prompts:", error);
+      } finally {
+        set_loading(false);
+      }
+    }
+
+    fetch_prompts();
+  }, []);
 
   return (
     <>
       <Header />
-      <div className="container mx-auto py-8 px-6">
-        <h1 className="text-4xl font-bold mb-8 text-center">Prompts</h1>
-        <div className="mb-6 flex items-center gap-2">
-          <Input
-            placeholder="Search prompts..."
-            value={search_query}
-            onChange={(e) => set_search_query(e.target.value)}
-            className="flex-grow"
-          />
-          <Button variant="outline" size="icon">
-            <Search className="h-4 w-4" />
-          </Button>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered_prompts.map((prompt, index) => (
-            <PromptCard key={index} prompt={prompt} index={index} />
-          ))}
-        </div>
+      <div className="container mx-auto py-12 px-6">
+        <h2 className="text-3xl font-bold mb-8 text-center">Prompt Library</h2>
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Array(6)
+              .fill(0)
+              .map((_, index) => (
+                <Skeleton key={index} className="h-[200px] w-full" />
+              ))}
+          </div>
+        ) : prompts.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {prompts.map((prompt, index) => (
+              <PromptCard key={index} prompt={prompt} index={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <AlertCircle className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
+            <h3 className="text-xl font-semibold mb-2">No prompts found</h3>
+            <p className="text-muted-foreground">Looks like there are no prompts available right now.</p>
+          </div>
+        )}
       </div>
     </>
   );

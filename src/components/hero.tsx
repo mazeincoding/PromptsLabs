@@ -11,6 +11,10 @@ export function Hero() {
     router.push("/prompts");
   };
 
+  const on_create_click = () => {
+    router.push("/prompts/create");
+  };
+
   return (
     <div>
       <div className="flex flex-col items-center text-center px-8 mt-8 sm:mt-24 gap-5 max-w-4xl mx-auto">
@@ -35,6 +39,7 @@ export function Hero() {
             className="rounded-full w-full sm:w-auto"
             size="lg"
             variant="outline"
+            onClick={on_create_click}
           >
             <Plus className="mr-2 h-4 w-4" />
             Create
