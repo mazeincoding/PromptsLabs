@@ -1,5 +1,11 @@
 import { TPrompt } from "@/types/prompt";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MessageSquare, CheckCircle } from "lucide-react";
 
@@ -32,10 +38,12 @@ export function PromptCard({
           </p>
           <p className="text-muted-foreground">{prompt.expected_output}</p>
         </div>
+      </CardContent>
+      <CardFooter className="flex justify-betweenq">
         <p className="text-sm text-muted-foreground">
           Created by: {prompt.created_by}
         </p>
-      </CardContent>
+      </CardFooter>
     </Card>
   );
 }
