@@ -12,21 +12,44 @@ import { Loader2, Asterisk } from "lucide-react";
 
 export default function CreatePromptPage() {
   const router = useRouter();
-  const [input, set_input] = useState("");
-  const [expected_output, set_expected_output] = useState("");
-  const [name, set_name] = useState("");
+  const [form_data, set_form_data] = useState({
+    input: "",
+    expected_output: "",
+    name: "",
+  });
   const [is_submitting, set_is_submitting] = useState(false);
+  const [errors, set_errors] = useState({ input: "", expected_output: "" });
   const { toast } = useToast();
+
+  const handle_change = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    set_form_data((prev) => ({ ...prev, [id]: value }));
+    if (errors[id as keyof typeof errors]) {
+      set_errors((prev) => ({ ...prev, [id]: "" }));
+    }
+  };
 
   const handle_submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const new_errors = {
+      input: !form_data.input.trim() ? "Input is required" : "",
+      expected_output: !form_data.expected_output.trim()
+        ? "Expected output is required"
+        : "",
+    };
+
+    set_errors(new_errors);
+
+    if (new_errors.input || new_errors.expected_output) return;
+
     set_is_submitting(true);
     try {
       await add_prompt({
-        input,
-        expected_output,
+        ...form_data,
         is_hot: false,
-        created_by: name || "Anonymous",
+        created_by: form_data.name || "Anonymous",
       });
       toast({
         title: "Prompt created",
@@ -45,54 +68,51 @@ export default function CreatePromptPage() {
     }
   };
 
+  const render_input = (id: string, label: string, is_textarea = false) => (
+    <div>
+      <label
+        htmlFor={id}
+        className="mb-2 text-sm font-medium flex items-center gap-1"
+      >
+        {label} {id !== "name" && <Asterisk className="w-3 h-3" />}
+      </label>
+      {is_textarea ? (
+        <Textarea
+          id={id}
+          value={form_data[id as keyof typeof form_data]}
+          onChange={handle_change}
+          className={`w-full h-32 ${
+            errors[id as keyof typeof errors]
+              ? "border-red-500 focus-visible:border-red-500"
+              : ""
+          }`}
+        />
+      ) : (
+        <Input
+          id={id}
+          value={form_data[id as keyof typeof form_data]}
+          onChange={handle_change}
+          placeholder={id === "name" ? "Anonymous" : ""}
+          className="w-full"
+        />
+      )}
+      {errors[id as keyof typeof errors] && (
+        <p className="text-red-500 text-sm mt-1">
+          {errors[id as keyof typeof errors]}
+        </p>
+      )}
+    </div>
+  );
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header show_create_button={false} />
       <div className="flex-1 container mx-auto p-8 max-w-4xl">
         <h1 className="text-2xl font-bold mb-6">Create New Prompt</h1>
-        <form onSubmit={handle_submit} className="space-y-6">
-          <div>
-            <label htmlFor="name" className="block mb-2 text-sm font-medium">
-              Your Name
-            </label>
-            <Input
-              id="name"
-              value={name}
-              onChange={(e) => set_name(e.target.value)}
-              placeholder="Anonymous"
-              className="w-full"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="input"
-              className=" mb-2 text-sm font-medium flex items-center gap-1"
-            >
-              Input <Asterisk className="w-3 h-3" />
-            </label>
-            <Textarea
-              id="input"
-              value={input}
-              onChange={(e) => set_input(e.target.value)}
-              required
-              className="w-full h-32"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="expected_output"
-              className="mb-2 text-sm font-medium flex items-center gap-1"
-            >
-              Expected Output <Asterisk className="w-3 h-3" />
-            </label>
-            <Textarea
-              id="expected_output"
-              value={expected_output}
-              onChange={(e) => set_expected_output(e.target.value)}
-              required
-              className="w-full h-32"
-            />
-          </div>
+        <form onSubmit={handle_submit} className="space-y-6" noValidate>
+          {render_input("name", "Your Name")}
+          {render_input("input", "Input", true)}
+          {render_input("expected_output", "Expected Output", true)}
           <Button type="submit" className="w-full" disabled={is_submitting}>
             {is_submitting ? (
               <>
