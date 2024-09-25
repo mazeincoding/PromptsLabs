@@ -39,7 +39,7 @@ export function Library() {
     <div className="container mx-auto py-12 px-6 max-w-7xl">
       <h2 className="text-3xl font-bold mb-8 text-center">Prompt Library</h2>
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="space-y-8">
           {Array(prompts_to_show)
             .fill(0)
             .map((_, index) => (
@@ -48,7 +48,7 @@ export function Library() {
         </div>
       ) : prompts.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="space-y-8">
             {prompts.slice(0, prompts_to_show).map((prompt, index) => (
               <PromptCard key={index} prompt={prompt} index={index} />
             ))}
