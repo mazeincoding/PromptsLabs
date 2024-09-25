@@ -10,6 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { MessageSquare, CheckCircle, Copy, Check, Flame } from "lucide-react";
 import { copy_prompt_to_clipboard } from "@/lib/prompt-utils";
+import { Avatar, AvatarFallback } from "./ui/avatar";
 
 export function PromptCard({
   prompt,
@@ -64,8 +65,13 @@ export function PromptCard({
         </div>
       </CardContent>
       <CardFooter className="flex justify-betweenq">
-        <p className="text-sm text-muted-foreground">
-          Created by: {prompt.created_by}
+        <p className="text-sm text-muted-foreground flex items-center gap-2">
+          <Avatar className="w-8 h-8">
+            <AvatarFallback>
+              {prompt.created_by[0]}
+            </AvatarFallback>
+          </Avatar>
+          {prompt.created_by}
         </p>
       </CardFooter>
     </Card>
