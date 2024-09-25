@@ -8,7 +8,7 @@ export default function Home() {
       <Header />
       <div className="flex flex-col gap-10">
         <Hero />
-        <Library />
+        <Library prompts_to_show={2} />
       </div>
     </div>
   );

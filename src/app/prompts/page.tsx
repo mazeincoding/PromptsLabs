@@ -5,7 +5,7 @@ export default function Prompts() {
   return (
     <>
       <Header />
-      <Library />
+      <Library prompts_to_show={30} />
     </>
   );
 }

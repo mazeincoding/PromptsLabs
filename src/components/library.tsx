@@ -9,12 +9,10 @@ import { get_prompts } from "@/lib/prompt-utils";
 import { TPrompt } from "@/types/prompt";
 import { AlertCircle } from "lucide-react";
 
-export function Library() {
+export function Library({ prompts_to_show = 2 }: { prompts_to_show?: number }) {
   const router = useRouter();
   const [prompts, set_prompts] = useState<TPrompt[]>([]);
   const [loading, set_loading] = useState(true);
-
-  const prompts_to_show = 5;
 
   useEffect(() => {
     async function fetch_prompts() {
