@@ -10,7 +10,9 @@ function Logo({
   show_text?: boolean;
 }) {
   const app_name = get_app_name();
-  const second_capital_index = app_name.split('').findIndex((char, index) => index > 0 && char === char.toUpperCase());
+  const second_capital_index = app_name
+    .split("")
+    .findIndex((char, index) => index > 0 && char === char.toUpperCase());
   const primary_text = app_name.slice(second_capital_index);
   const regular_text = app_name.slice(0, second_capital_index);
 
