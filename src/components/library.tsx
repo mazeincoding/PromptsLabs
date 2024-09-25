@@ -41,7 +41,7 @@ export function Library({ prompts_to_show = 2 }: { prompts_to_show?: number }) {
           {Array(prompts_to_show)
             .fill(0)
             .map((_, index) => (
-              <Skeleton key={index} className="h-[200px] w-full" />
+              <Skeleton key={index} className="h-[280px] w-full" />
             ))}
         </div>
       ) : prompts.length > 0 ? (
