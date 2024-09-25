@@ -3,7 +3,7 @@ import { Plus, Search } from "lucide-react";
 
 export function Hero() {
   return (
-    <div className="flex flex-col items-center min-h-[70vh] text-center px-8 mt-8 sm:mt-24 gap-4 max-w-4xl mx-auto">
+    <div className="flex flex-col items-center text-center px-8 mt-8 sm:mt-24 gap-4 max-w-4xl mx-auto">
       <div className="flex flex-col gap-4 justify-center items-center">
         <h1 className="scroll-m-20 text-3xl sm:text-4xl font-extrabold tracking-tight lg:text-5xl">
           A library of prompts to see how new LLMs perform
