@@ -20,7 +20,7 @@ function Logo({
     <div className="flex items-center gap-2">
       {show_logo && <LogoIcon size={size} />}
       {show_text && (
-        <span className="text-lg font-bold">
+        <span className="text-lg font-bold hidden sm:block">
           {regular_text}
           <span className="text-primary">{primary_text}</span>
         </span>
