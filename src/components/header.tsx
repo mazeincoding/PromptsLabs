@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Logo } from "@/components/logo";
 import { Button } from "./ui/button";
-import { Plus } from "lucide-react";
+import { Plus, Github } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export function Header({
@@ -23,7 +23,20 @@ export function Header({
         <Logo size={28} />
       </Link>
       <div className="flex items-center gap-4">
-        <ThemeToggle />
+        <div>
+          <Link
+            href="https://github.com/mazeincoding/PromptsLabs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-foreground"
+          >
+            <Button variant="ghost" size="icon">
+              <Github className="w-5 h-5" />
+              <span className="sr-only">GitHub</span>
+            </Button>
+          </Link>
+          <ThemeToggle />
+        </div>
         {show_create_button && (
           <Button
             className="gap-2"
