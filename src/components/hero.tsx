@@ -1,7 +1,16 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Plus, Search } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export function Hero() {
+  const router = useRouter();
+
+  const on_explore_click = () => {
+    router.push("/prompts");
+  };
+
   return (
     <div>
       <div className="flex flex-col items-center text-center px-8 mt-8 sm:mt-24 gap-5 max-w-4xl mx-auto">
@@ -14,7 +23,11 @@ export function Hero() {
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-          <Button className="rounded-full w-full sm:w-auto" size="lg">
+          <Button
+            className="rounded-full w-full sm:w-auto"
+            size="lg"
+            onClick={on_explore_click}
+          >
             <Search className="mr-2 h-4 w-4" />
             Explore
           </Button>
