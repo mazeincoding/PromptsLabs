@@ -10,8 +10,8 @@ function Logo({
   show_text?: boolean;
 }) {
   const app_name = get_app_name();
-  const app_name_without_lab = app_name.slice(0, -3);
-  const lab_text = app_name.slice(-3);
+  const app_name_without_lab = app_name.slice(0, -4);
+  const lab_text = app_name.slice(-4);
 
   return (
     <div className="flex items-center gap-2">

@@ -10,10 +10,10 @@ export function get_app_name(
 ) {
   switch (format) {
     case "lowercase":
-      return "promptylab";
+      return "promptslabs";
     case "snake_case":
-      return "prompty_lab";
+      return "prompts_labs";
     default:
-      return "PromptyLab";
+      return "PromptsLabs";
   }
 }
