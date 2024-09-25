@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MessageSquare, CheckCircle, Copy, Check } from "lucide-react";
+import { MessageSquare, CheckCircle, Copy, Check, Flame } from "lucide-react";
 import { copy_prompt_to_clipboard } from "@/lib/prompt-utils";
 
 export function PromptCard({
@@ -29,8 +29,14 @@ export function PromptCard({
   return (
     <Card className="hover:shadow-lg transition-shadow">
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="flex items-center">
+        <CardTitle className="flex items-center gap-2">
           <Badge variant="secondary">Prompt {index + 1}</Badge>
+          {prompt.is_hot && (
+            <Badge className="bg-orange-500 text-white space-x-1 hover:bg-orange-500">
+              <span>Hot</span>
+              <Flame className="w-4 h-4" />
+            </Badge>
+          )}
         </CardTitle>
         {is_copied ? (
           <Check className="h-4 w-4 text-green-500" />
