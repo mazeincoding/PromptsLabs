@@ -10,16 +10,17 @@ function Logo({
   show_text?: boolean;
 }) {
   const app_name = get_app_name();
-  const app_name_without_lab = app_name.slice(0, -4);
-  const lab_text = app_name.slice(-4);
+  const second_capital_index = app_name.split('').findIndex((char, index) => index > 0 && char === char.toUpperCase());
+  const primary_text = app_name.slice(second_capital_index);
+  const regular_text = app_name.slice(0, second_capital_index);
 
   return (
     <div className="flex items-center gap-2">
       {show_logo && <LogoIcon size={size} />}
       {show_text && (
         <span className="text-lg font-bold">
-          {app_name_without_lab}
-          <span className="text-primary">{lab_text}</span>
+          {regular_text}
+          <span className="text-primary">{primary_text}</span>
         </span>
       )}
     </div>
