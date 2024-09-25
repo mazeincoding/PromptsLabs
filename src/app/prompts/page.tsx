@@ -17,7 +17,7 @@ export default function Prompts() {
   return (
     <>
       <Header />
-      <div className="container mx-auto py-8">
+      <div className="container mx-auto py-8 px-6">
         <h1 className="text-4xl font-bold mb-8 text-center">Prompts</h1>
         <div className="mb-6 flex items-center gap-2">
           <Input
