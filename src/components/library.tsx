@@ -35,7 +35,6 @@ export function Library({ prompts_to_show = 2 }: { prompts_to_show?: number }) {
 
   return (
     <div className="container mx-auto py-12 px-6 max-w-7xl">
-      <h2 className="text-3xl font-bold mb-8 text-center">Prompt Library</h2>
       {loading ? (
         <div className="space-y-8">
           {Array(prompts_to_show)
