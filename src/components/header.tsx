@@ -7,7 +7,7 @@ import { Plus } from "lucide-react";
 export function Header() {
   return (
     <header className="flex justify-between items-center p-4 border-b">
-      <Link href="/" className="flex items-center space-x-2">
+      <Link href="/" className="flex items-center space-x-2 no-underline text-foreground">
         <Logo size={28} />
       </Link>
       <div className="flex items-center gap-4">
