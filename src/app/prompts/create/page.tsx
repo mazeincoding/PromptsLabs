@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { add_prompt } from "@/lib/prompt-utils";
 import { Header } from "@/components/header";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2 } from "lucide-react";
+import { Loader2, Asterisk } from "lucide-react";
 
 export default function CreatePromptPage() {
   const router = useRouter();
@@ -64,8 +64,11 @@ export default function CreatePromptPage() {
             />
           </div>
           <div>
-            <label htmlFor="input" className="block mb-2 text-sm font-medium">
-              Input
+            <label
+              htmlFor="input"
+              className=" mb-2 text-sm font-medium flex items-center gap-1"
+            >
+              Input <Asterisk className="w-3 h-3" />
             </label>
             <Textarea
               id="input"
@@ -78,9 +81,9 @@ export default function CreatePromptPage() {
           <div>
             <label
               htmlFor="expected_output"
-              className="block mb-2 text-sm font-medium"
+              className="mb-2 text-sm font-medium flex items-center gap-1"
             >
-              Expected Output
+              Expected Output <Asterisk className="w-3 h-3" />
             </label>
             <Textarea
               id="expected_output"
