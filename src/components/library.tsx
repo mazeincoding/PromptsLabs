@@ -9,7 +9,12 @@ import { get_prompts } from "@/lib/prompt-utils";
 import { TPrompt } from "@/types/prompt";
 import { AlertCircle } from "lucide-react";
 
-export function Library({ prompts_to_show = 2 }: { prompts_to_show?: number }) {
+type LibraryProps = {
+  prompts_to_show: number
+  search_query?: string
+}
+
+export function Library({ prompts_to_show, search_query = "" }: LibraryProps) {
   const router = useRouter();
   const [prompts, set_prompts] = useState<TPrompt[]>([]);
   const [loading, set_loading] = useState(true);
@@ -29,12 +34,16 @@ export function Library({ prompts_to_show = 2 }: { prompts_to_show?: number }) {
     fetch_prompts();
   }, []);
 
+  const filtered_prompts = prompts.filter((prompt) =>
+    prompt.input.toLowerCase().includes(search_query.toLowerCase())
+  );
+
   const show_more = () => {
     router.push("/prompts");
   };
 
   return (
-    <div className="container mx-auto py-12 px-6 max-w-7xl">
+    <div className="container mx-auto px-6 max-w-7xl">
       {loading ? (
         <div className="space-y-8">
           {Array(prompts_to_show)
@@ -46,7 +55,7 @@ export function Library({ prompts_to_show = 2 }: { prompts_to_show?: number }) {
       ) : prompts.length > 0 ? (
         <>
           <div className="space-y-8">
-            {prompts.slice(0, prompts_to_show).map((prompt, index) => (
+            {filtered_prompts.slice(0, prompts_to_show).map((prompt, index) => (
               <PromptCard key={index} prompt={prompt} index={index} />
             ))}
           </div>
