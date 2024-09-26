@@ -7,7 +7,7 @@ import Script from "next/script";
 import { TPrompt } from "@/types/prompt";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-
+import { Footer } from "@/components/footer";
 const dummy_prompts: TPrompt[] = [
   {
     input: "How many R's are in the word strawberry?",
@@ -47,6 +47,7 @@ export default function Home() {
           </Button>
         </div>
       </div>
+      <Footer />
       <Script id="structured-data" type="application/ld+json">
         {`
           {
