@@ -8,19 +8,20 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="flex flex-col items-center md:items-start space-y-4">
             <p className="text-sm text-muted-foreground">
-              Built with <Heart className="inline-block w-4 h-4 text-red-500" /> by{" "}
+              Built with <Heart className="inline-block w-4 h-4 text-red-500" />{" "}
+              by{" "}
               <Link
-                href="https://twitter.com/mazeincoding"
+                href="https://twitter.com/mazewinther1"
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium text-primary hover:underline"
               >
-                mazeincoding
+                Maze
               </Link>
             </p>
             <div className="flex space-x-4">
               <Link
-                href="https://twitter.com/mazeincoding"
+                href="https://x.com/mazewinther1"
                 target="_blank"
                 rel="noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
