@@ -52,15 +52,15 @@ export default function CreatePromptPage() {
         created_by: form_data.name || "Anonymous",
       });
       toast({
-        title: "Prompt created",
-        description: "Your prompt has been added successfully.",
+        title: "Prompt requested",
+        description: "Wohoo! Your prompt will be added if it's approved.",
       });
       router.push("/prompts");
     } catch (error) {
       console.error("Failed to add prompt:", error);
       toast({
         title: "Error",
-        description: "Failed to create prompt. Please try again.",
+        description: "Failed to request prompt. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -120,7 +120,7 @@ export default function CreatePromptPage() {
                 Creating...
               </>
             ) : (
-              "Create Prompt"
+              "Request Prompt"
             )}
           </Button>
         </form>

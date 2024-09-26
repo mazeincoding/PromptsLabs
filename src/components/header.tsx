@@ -42,7 +42,7 @@ export function Header({
             className="gap-2"
             onClick={() => router.push("/prompts/create")}
           >
-            Create prompt
+            Request prompt
             <Plus className="w-4 h-4" />
           </Button>
         )}

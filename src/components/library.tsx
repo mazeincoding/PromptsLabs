@@ -15,7 +15,11 @@ type LibraryProps = {
   initial_prompts?: TPrompt[];
 };
 
-export function Library({ prompts_to_show, search_query = "", initial_prompts = [] }: LibraryProps) {
+export function Library({
+  prompts_to_show,
+  search_query = "",
+  initial_prompts = [],
+}: LibraryProps) {
   const router = useRouter();
   const [prompts, set_prompts] = useState<TPrompt[]>(initial_prompts);
   const [loading, set_loading] = useState(initial_prompts.length === 0);
@@ -80,7 +84,7 @@ export function Library({ prompts_to_show, search_query = "", initial_prompts = 
               className="p-0"
               onClick={() => router.push("/prompts/create")}
             >
-              Create one?
+              Request one?
             </Button>
           </p>
         </div>

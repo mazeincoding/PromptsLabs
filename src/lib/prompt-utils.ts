@@ -8,7 +8,7 @@ const supabase = createClient(
 );
 
 export async function add_prompt(prompt: TPrompt) {
-  const { data, error } = await supabase.from("prompts").insert({
+  const { data, error } = await supabase.from("requested_prompts").insert({
     input: prompt.input,
     expected_output: prompt.expected_output,
     is_hot: prompt.is_hot,

@@ -43,7 +43,7 @@ export function Hero() {
             onClick={on_create_click}
           >
             <Plus className="mr-2 h-4 w-4" />
-            Create
+            Request prompt
           </Button>
         </div>
       </div>

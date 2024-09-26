@@ -1,11 +1,11 @@
 # PromptsLabs
 
-PromptsLabs is a library of prompts to see how new LLMs perform. It allows users to explore existing prompts and create new ones.
+PromptsLabs is a library of prompts to see how new LLMs perform. It allows users to explore existing prompts and re new ones.
 
 ## Features
 
 - Explore a collection of prompts
-- Create new prompts
+- Request new prompts
 - Copy prompts to clipboard
 - Dark mode support
 
