@@ -53,7 +53,7 @@ export default function CreatePromptPage() {
       });
       toast({
         title: "Prompt requested",
-        description: "Wohoo! Your prompt will be added if it's approved.",
+        description: "Wohoo! Your prompt will be added when it's approved.",
       });
       router.push("/prompts");
     } catch (error) {
