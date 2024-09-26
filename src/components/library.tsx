@@ -10,17 +10,19 @@ import { TPrompt } from "@/types/prompt";
 import { AlertCircle } from "lucide-react";
 
 type LibraryProps = {
-  prompts_to_show: number
-  search_query?: string
-}
+  prompts_to_show: number;
+  search_query?: string;
+  initial_prompts?: TPrompt[];
+};
 
-export function Library({ prompts_to_show, search_query = "" }: LibraryProps) {
+export function Library({ prompts_to_show, search_query = "", initial_prompts = [] }: LibraryProps) {
   const router = useRouter();
-  const [prompts, set_prompts] = useState<TPrompt[]>([]);
-  const [loading, set_loading] = useState(true);
+  const [prompts, set_prompts] = useState<TPrompt[]>(initial_prompts);
+  const [loading, set_loading] = useState(initial_prompts.length === 0);
 
   useEffect(() => {
     async function fetch_prompts() {
+      if (initial_prompts.length > 0) return;
       try {
         const data = await get_prompts();
         set_prompts(data);
@@ -32,7 +34,7 @@ export function Library({ prompts_to_show, search_query = "" }: LibraryProps) {
     }
 
     fetch_prompts();
-  }, []);
+  }, [initial_prompts]);
 
   const filtered_prompts = prompts.filter((prompt) =>
     prompt.input.toLowerCase().includes(search_query.toLowerCase())
