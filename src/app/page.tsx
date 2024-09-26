@@ -1,8 +1,12 @@
+"use client";
+
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { Library } from "@/components/library";
 import Script from "next/script";
 import { TPrompt } from "@/types/prompt";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const dummy_prompts: TPrompt[] = [
   {
@@ -29,12 +33,19 @@ const dummy_prompts: TPrompt[] = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <div className="flex flex-col gap-10 pb-10">
         <Hero />
-        <Library prompts_to_show={3} initial_prompts={dummy_prompts} />
+        <div className="flex flex-col items-center justify-center gap-6">
+          <Library prompts_to_show={3} initial_prompts={dummy_prompts} />
+          <Button onClick={() => router.push("/prompts")}>
+            See all prompts
+          </Button>
+        </div>
       </div>
       <Script id="structured-data" type="application/ld+json">
         {`
