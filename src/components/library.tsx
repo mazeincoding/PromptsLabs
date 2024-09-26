@@ -82,7 +82,7 @@ export function Library({
             <Button
               variant="link"
               className="p-0"
-              onClick={() => router.push("/prompts/create")}
+              onClick={() => router.push("/prompts/request")}
             >
               Request one?
             </Button>

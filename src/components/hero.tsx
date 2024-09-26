@@ -12,7 +12,7 @@ export function Hero() {
   };
 
   const on_create_click = () => {
-    router.push("/prompts/create");
+    router.push("/prompts/request");
   };
 
   return (

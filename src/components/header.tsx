@@ -40,7 +40,7 @@ export function Header({
         {show_create_button && (
           <Button
             className="gap-2"
-            onClick={() => router.push("/prompts/create")}
+            onClick={() => router.push("/prompts/request")}
           >
             Request prompt
             <Plus className="w-4 h-4" />
