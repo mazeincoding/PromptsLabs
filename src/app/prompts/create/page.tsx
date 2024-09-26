@@ -108,7 +108,7 @@ export default function CreatePromptPage() {
     <div className="min-h-screen flex flex-col">
       <Header show_create_button={false} />
       <div className="flex-1 container mx-auto p-8 max-w-4xl">
-        <h1 className="text-2xl font-bold mb-6">Create New Prompt</h1>
+        <h1 className="text-2xl font-bold mb-6">Request New Prompt</h1>
         <form onSubmit={handle_submit} className="space-y-6" noValidate>
           {render_input("name", "Your Name")}
           {render_input("input", "Input", true)}
